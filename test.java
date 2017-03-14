@@ -26,7 +26,7 @@ class MYLIST{
 		}
 		System.out.println("");
 	}
-	List<Integer> next(){
+	boolean next(){
 		r.clear();
 		sum=0;
 		B[B.length-1]++;
@@ -36,7 +36,7 @@ class MYLIST{
 			}
 		}
 		if(B[0]>=2){
-			return null;
+			return false;
 		}
 		
 		for (int i=0;i<B.length;i++) {
@@ -44,7 +44,7 @@ class MYLIST{
 				r.add(A[i]);sum+=A[i];
 			}
 		}
-		return r;
+		return true;
 	}
 }
 
@@ -70,17 +70,11 @@ public class test {
 		int[] AA=Arrays.copyOf(A, index);
 		
 		MYLIST mylist=new MYLIST(AA);
-		List<Integer> r=new ArrayList<>();
-		do {
-			r=mylist.next();
-			if(r==null){
-				break;
-			}else {
-				if(mylist.sum==m){
-					mylist.print();
-				}
+		while(mylist.next()){
+			if(mylist.sum==m){
+				mylist.print();
 			}
-		} while (r!=null);
+		}
 		
 		
 	}
