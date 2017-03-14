@@ -3,11 +3,8 @@
  */
 package test;
 
-import java.awt.Container;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,19 +13,22 @@ import java.util.Vector;
  *
  */
 class MYLIST{
-	int A[],B[];
+	int A[],B[],sum=0;
+	List<Integer> r=new Vector<>();
 	public MYLIST(int b[]) {
 		// TODO 自动生成的构造函数存根
 		A=b.clone();
 		B=new int[b.length];
 	}
 	void print(){
-		for (int a : A) {
-			System.out.print(a);System.out.print(" ");
+		for (int i : r) {
+			System.out.print(i);System.out.print(" ");
 		}
 		System.out.println("");
 	}
 	List<Integer> next(){
+		r.clear();
+		sum=0;
 		B[B.length-1]++;
 		for(int i=B.length-1;i>0;i--){
 			if(B[i]>=2){
@@ -38,10 +38,10 @@ class MYLIST{
 		if(B[0]>=2){
 			return null;
 		}
-		List<Integer> r=new Vector<>();
+		
 		for (int i=0;i<B.length;i++) {
 			if(B[i]==1){
-				r.add(A[i]);
+				r.add(A[i]);sum+=A[i];
 			}
 		}
 		return r;
@@ -76,15 +76,8 @@ public class test {
 			if(r==null){
 				break;
 			}else {
-				int sum=0;
-				for (Integer integer : r) {
-					sum+=integer;
-				}
-				if(sum==m){
-					for (Integer integer : r) {
-						System.out.print(integer);System.out.print(" ");
-					}
-					System.out.println("");
+				if(mylist.sum==m){
+					mylist.print();
 				}
 			}
 		} while (r!=null);
